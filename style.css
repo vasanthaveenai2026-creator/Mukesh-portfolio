@@ -814,3 +814,36 @@ h3 {
   height: 28px;
   display: block;
 }
+
+/* =========================================================
+   PERFORMANCE: lighter rendering on phones / touch devices
+   ========================================================= */
+@media (max-width: 920px), (pointer: coarse) {
+  /* backdrop-filter is the most expensive effect on Android GPUs */
+  * {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  :root {
+    --glass-bg: rgba(8, 28, 58, 0.78);
+    --glass-bg-hover: rgba(12, 42, 84, 0.86);
+  }
+  .glass-footer { background: rgba(2, 8, 19, 0.96); }
+
+  /* big blurred orbs: smaller blur radius, no motion */
+  .orb {
+    filter: blur(45px);
+    animation: none;
+    opacity: 0.38;
+  }
+  .orb-1 { width: 320px; height: 320px; }
+
+  /* static mandala instead of a constant spin */
+  .mandala-bg { animation: none; }
+
+  /* drop-shadow on a transformed element repaints every frame */
+  .monumental-name { filter: none; }
+
+  /* fewer layers promoted to the GPU */
+  .scroll-fade-item, .lang-toggle-wrap, .gallery-card-item img { will-change: auto; }
+}

@@ -2,8 +2,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const hasGSAP = typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined";
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const animate = hasGSAP && !prefersReduced;
+  // "Lite" mode for phones / touch devices: lighter animations, native scrolling
+  const lite = window.matchMedia("(max-width: 920px), (pointer: coarse)").matches;
 
-  if (hasGSAP) gsap.registerPlugin(ScrollTrigger);
+  if (hasGSAP) {
+    gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.config({ ignoreMobileResize: true });
+  }
 
   // 1. Procedurally Generate Intricate Mandala Petals
   const outerPetals = document.getElementById("petals-outer");
@@ -31,7 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 2. Smooth Scrolling (Lenis) synced with GSAP ScrollTrigger
   let lenis = null;
-  if (animate && typeof Lenis !== "undefined") {
+  // Native scrolling is smoother than JS smooth-scroll on phones, so Lenis is desktop only
+  if (animate && !lite && typeof Lenis !== "undefined") {
     lenis = new Lenis({
       duration: 1.25,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -192,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const heroSection = document.querySelector(".monumental-hero");
   if (heroSection) {
     gsap.to(".hero-title-wrap", {
-      y: 150, scale: 0.94, autoAlpha: 0.15, ease: "none",
+      y: lite ? 70 : 150, scale: lite ? 1 : 0.94, autoAlpha: 0.15, ease: "none",
       scrollTrigger: { trigger: heroSection, start: "top top", end: "bottom top", scrub: true },
     });
     gsap.to(".hero-thread-svg", {
@@ -202,11 +208,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 9. Ambient background parallax (orbs + mandala drift at different speeds)
-  const docScroll = { trigger: document.documentElement, start: "top top", end: "bottom bottom", scrub: 1.2 };
-  gsap.to(".orb-1", { "--py": "260px", ease: "none", scrollTrigger: docScroll });
-  gsap.to(".orb-2", { "--py": "-320px", ease: "none", scrollTrigger: docScroll });
-  gsap.to(".orb-3", { "--py": "180px", ease: "none", scrollTrigger: docScroll });
-  gsap.to(".mandala-bg", { "--py": "320px", ease: "none", scrollTrigger: docScroll });
+  if (!lite) {
+    const docScroll = { trigger: document.documentElement, start: "top top", end: "bottom bottom", scrub: 1.2 };
+    gsap.to(".orb-1", { "--py": "260px", ease: "none", scrollTrigger: docScroll });
+    gsap.to(".orb-2", { "--py": "-320px", ease: "none", scrollTrigger: docScroll });
+    gsap.to(".orb-3", { "--py": "180px", ease: "none", scrollTrigger: docScroll });
+    gsap.to(".mandala-bg", { "--py": "320px", ease: "none", scrollTrigger: docScroll });
+  }
 
   // 10. Section headers: pill, title, text rise one after another
   gsap.utils.toArray(".gallery-intro, .section-header").forEach((header) => {
@@ -219,12 +227,18 @@ document.addEventListener("DOMContentLoaded", () => {
   // 11. Gallery cards: rise in, image reveals with a clip-path + settling zoom
   gsap.utils.toArray(".gallery-card-item").forEach((card) => {
     gsap.from(card, {
-      y: 70, autoAlpha: 0, duration: 1.2, ease: "power3.out",
-      scrollTrigger: { trigger: card, start: "top 90%", toggleActions: "play none none reverse" },
+      y: lite ? 40 : 70, autoAlpha: 0, duration: lite ? 0.8 : 1.2, ease: "power3.out",
+      scrollTrigger: { trigger: card, start: "top 90%", toggleActions: lite ? "play none none none" : "play none none reverse" },
     });
 
     const img = card.querySelector("img");
-    if (img) {
+    if (img && lite) {
+      // Phones: one cheap fade/zoom instead of a scroll-scrubbed clip-path
+      gsap.from(img, {
+        scale: 1.08, autoAlpha: 0, duration: 1, ease: "power2.out",
+        scrollTrigger: { trigger: card, start: "top 90%", toggleActions: "play none none none" },
+      });
+    } else if (img) {
       gsap.fromTo(
         img,
         { scale: 1.25, clipPath: "inset(14% 14% 14% 14% round 16px)" },
