@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MUKESH | Saraswati Veena Performer & Guru</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Ambient Ocean Background & Mandala Motifs -->
+  <div class="ambient-canvas">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <svg class="mandala-bg mandala-top-right" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="url(#cyanGrad)" stroke-width="0.9" opacity="0.22">
+        <circle cx="200" cy="200" r="190" stroke-dasharray="4 4"/>
+        <circle cx="200" cy="200" r="165"/>
+        <circle cx="200" cy="200" r="130" stroke-dasharray="2 6"/>
+        <circle cx="200" cy="200" r="95"/>
+        <circle cx="200" cy="200" r="55"/>
+        <circle cx="200" cy="200" r="22"/>
+        <g id="petals-outer"></g>
+        <g id="petals-inner"></g>
+      </g>
+      <defs>
+        <linearGradient id="cyanGrad" x1="0" y1="0" x2="400" y2="400" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#90E0EF"/>
+          <stop offset="50%" stop-color="#00B4D8"/>
+          <stop offset="100%" stop-color="#03045E"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- Classy Floating Language Switcher Button -->
+  <div class="lang-toggle-wrap">
+    <button id="langToggleBtn" class="lang-btn" aria-label="Switch Language to Tamil">
+      <span class="lang-icon">🌐</span>
+      <span class="lang-text" data-en="தமிழ்" data-ta="English">தமிழ்</span>
+    </button>
+  </div>
+
+  <main>
+    <!-- Monumental Hero Section -->
+    <section id="home" class="monumental-hero">
+      <svg class="hero-thread-svg" viewBox="0 0 1440 420" fill="none" preserveAspectRatio="none">
+        <path
+          id="heroThreadPath"
+          d="M 1380 280 C 980 280, 420 390, 160 395 C 40 398, 220 310, 460 265"
+          stroke="url(#threadGradient)"
+          stroke-width="2.2"
+          stroke-linecap="round"
+        />
+        <defs>
+          <linearGradient id="threadGradient" x1="1380" y1="280" x2="160" y2="395" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#48CAE4" stop-opacity="1"/>
+            <stop offset="55%" stop-color="#0096C7" stop-opacity="0.85"/>
+            <stop offset="100%" stop-color="#023E8A" stop-opacity="0.1"/>
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <div class="hero-title-wrap">
+        <h1 class="monumental-name" id="monumentalName">MUKESH</h1>
+        <div class="hero-sub-bar">
+          <span data-en="Saraswati Veena Performer & Guru" data-ta="சரஸ்வதி வீணை கலைஞர் & குரு">Saraswati Veena Performer & Guru</span>
+          <span class="dot">•</span>
+          <span data-en="Chennai, India" data-ta="சென்னை, இந்தியா">Chennai, India</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual Chronicle & Sequential Musical Journey -->
+    <section id="gallery" class="scroll-gallery-section container">
+      <div class="gallery-intro scroll-fade-item">
+        <span class="pill-tag" data-en="Visual Chronicle & Story" data-ta="வாழ்க்கைப் பயணம் & கதை">Visual Chronicle & Story</span>
+        <h2 data-en="From Village Soil to Sacred Strings" data-ta="கிராமத்து மண்ணிலிருந்து இசை நரம்புகளுக்கு">From Village Soil to Sacred Strings</h2>
+        <p data-en="Scroll through the visual chapters of a self-made journey into the heart of the Saraswati Veena." data-ta="சரஸ்வதி வீணையின் கலை உலகிற்குள் ஒரு சுயம்புவான பயணத்தின் படங்களை வாசித்து செல்லுங்கள்.">Scroll through the visual chapters of a self-made journey into the heart of the Saraswati Veena.</p>
+      </div>
+
+      <div class="uniform-gallery-grid">
+        <figure class="gallery-card-item frame-portrait scroll-fade-item">
+          <div class="glass-img-shell">
+            <img src="Assets/img/img-1.jpeg" alt="Mukesh Saraswati Veena Portrait 1" loading="lazy" />
+          </div>
+          <figcaption data-en="Mukesh" data-ta="முகேஷ்">Mukesh</figcaption>
+        </figure>
+
+        <figure class="gallery-card-item scroll-fade-item">
+          <div class="glass-img-shell">
+            <img src="Assets/img/img-2.jpeg" alt="Mukesh Saraswati Veena Journey Chapter 1" loading="lazy" />
+          </div>
+          <div class="story-caption-box">
+            <span class="chapter-tag" data-en="Chapter 01 • Humble Roots" data-ta="அத்தியாயம் 01 • எளிய கிராமத்து வேர்கள்">Chapter 01 • Humble Roots</span>
+            <p class="story-text" 
+               data-en="Born into a farming family in a quiet village with scarce bus connectivity, my early years were spent tilling the soil and studying in government schools. Without any musical lineage or background, life was rooted entirely in agriculture and honest labour." 
+               data-ta="பஸ் வசதி கூட ரொம்ப குறைவான ஒரு சின்ன கிராமத்துல, விவசாய ஃபேமிலியில பிறந்தேன். முழுக்க முழுக்க விவசாயம் பண்ணி, அரசு பள்ளியில தான் படிச்சேன். எந்த ஒரு இசை பின்புலமும் இல்லாம விவசாய வேலைகளோடவே என் ஆரம்ப காலம் கழிஞ்சது.">
+              Born into a farming family in a quiet village with scarce bus connectivity, my early years were spent tilling the soil and studying in government schools. Without any musical lineage or background, life was rooted entirely in agriculture and honest labour.
+            </p>
+          </div>
+        </figure>
+
+        <figure class="gallery-card-item scroll-fade-item">
+          <div class="glass-img-shell">
+            <img src="Assets/img/img-3.jpeg" alt="Mukesh Saraswati Veena Journey Chapter 2" loading="lazy" />
+          </div>
+          <div class="story-caption-box">
+            <span class="chapter-tag" data-en="Chapter 02 • The Turning Point" data-ta="அத்தியாயம் 02 • வாழ்க்கையின் திருப்புமுனை">Chapter 02 • The Turning Point</span>
+            <p class="story-text" 
+               data-en="While working in the fields, a kind employer noticed my youth and urged me to pursue higher education at a government music college where tuition was accessible. That single piece of encouragement opened a door I never knew existed." 
+               data-ta="விவசாய வேலை பார்த்துட்டு இருக்கும்போது, அங்க ஒரு முதலாளி எனக்கு சொல்றாரு: 'இந்த வயசுல வேலை செய்ற? மியூசிக் காலேஜ்ல பீஸ்லாம் கிடையாது, போய் கத்துக்கோ'ன்னு ஐடியா கொடுத்தார். அந்த வழிகாட்டுதல்தான் என் வாழ்க்கையை மாத்துச்சு.">
+              While working in the fields, a kind employer noticed my youth and urged me to pursue higher education at a government music college where tuition was accessible. That single piece of encouragement opened a door I never knew existed.
+            </p>
+          </div>
+        </figure>
+
+        <figure class="gallery-card-item scroll-fade-item">
+          <div class="glass-img-shell">
+            <img src="Assets/img/img-4.jpeg" alt="Mukesh Saraswati Veena Journey Chapter 3" loading="lazy" />
+          </div>
+          <div class="story-caption-box">
+            <span class="chapter-tag" data-en="Chapter 03 • Decade of Immersion" data-ta="அத்தியாயம் 03 • இசையில் அர்ப்பணிப்பு">Chapter 03 • Decade of Immersion</span>
+            <p class="story-text" 
+               data-en="In 2011, I stepped into the music college and chose the Saraswati Veena as my voice. Over the next decade, I dedicated myself completely—earning my three-year Diploma, followed by a B.A. and an M.A. in Veena." 
+               data-ta="2011ல இசை கல்லூரியில போய் ப்ராப்பரா டிப்ளமோ மியூசிக் மூணு வருஷம் படிச்சேன். அப்புறம் பிஏ மியூசிக், அதுக்கப்புறம் எம்ஏ முடிச்சேன். இத்தனை வருஷமும் வீணையிலயே தொடர்ந்து முழு ஈடுபாட்டோடு படிச்சேன்.">
+              In 2011, I stepped into the music college and chose the Saraswati Veena as my voice. Over the next decade, I dedicated myself completely—earning my three-year Diploma, followed by a B.A. and an M.A. in Veena.
+            </p>
+          </div>
+        </figure>
+
+        <figure class="gallery-card-item scroll-fade-item">
+          <div class="glass-img-shell">
+            <img src="Assets/img/img-5.jpeg" alt="Mukesh Saraswati Veena Journey Chapter 4" loading="lazy" />
+          </div>
+          <div class="story-caption-box">
+            <span class="chapter-tag" data-en="Chapter 04 • Twelve Hours of Sadhana" data-ta="அத்தியாயம் 04 • 12 மணி நேர சாதனை">Chapter 04 • Twelve Hours of Sadhana</span>
+            <p class="story-text" 
+               data-en="Having no family background in classical music meant forging my own path through sheer discipline. Day after day, I sat alone with my Veena for eight to twelve hours, refining every gamaka and pluck until the strings felt like an extension of my breath." 
+               data-ta="பெரிய பின்புலம்லாம் இல்லாம நானே உட்கார்ந்து ஒரு நாளைக்கு எட்டு மணிியிலிருந்து பன்னிரண்டு மணி நேரம் வரைக்கும் வீணையோடு தீவிரமா பிராக்டிஸ் பண்ணினேன். அந்த கடுமையான உழைப்புதான் என்னை உயர்த்தியது.">
+              Having no family background in classical music meant forging my own path through sheer discipline. Day after day, I sat alone with my Veena for eight to twelve hours, refining every gamaka and pluck until the strings felt like an extension of my breath.
+            </p>
+          </div>
+        </figure>
+
+        <figure class="gallery-card-item scroll-fade-item">
+          <div class="glass-img-shell">
+            <img src="Assets/img/img-6.jpeg" alt="Mukesh Saraswati Veena Journey Chapter 5" loading="lazy" />
+          </div>
+          <div class="story-caption-box">
+            <span class="chapter-tag" data-en="Chapter 05 • Returning as a Guru" data-ta="அத்தியாயம் 05 • குருவாக உயர்ந்த பயணம்">Chapter 05 • Returning as a Guru</span>
+            <p class="story-text" 
+               data-en="My dedication led to a faculty appointment at the very university where I once studied, teaching postgraduate scholars for nearly four years. Since 2016, I have also been mentoring aspiring students at the Government Evening Music College." 
+               data-ta="படிச்ச யுனிவர்சிட்டியிலேயே எனக்கு ஜாப் கிடைச்சு மூணு நாலு வருஷம் ஒர்க் பண்ணினேன். அதுக்கப்புறம் 2016ல இருந்து கவர்மெண்ட் ஈவினிங் மியூசிக் காலேஜ்ல வீணை வகுப்புல ஸ்டூடென்ட்ஸுக்கு கிளாஸ் எடுத்துட்டு இருக்கேன்.">
+              My dedication led to a faculty appointment at the very university where I once studied, teaching postgraduate scholars for nearly four years. Since 2016, I have also been mentoring aspiring students at the Government Evening Music College.
+            </p>
+          </div>
+        </figure>
+
+        <figure class="gallery-card-item span-two scroll-fade-item">
+          <div class="glass-img-shell">
+            <img src="Assets/img/img-7.jpeg" alt="Mukesh Saraswati Veena Journey Chapter 6" loading="lazy" />
+          </div>
+          <div class="story-caption-box">
+            <span class="chapter-tag" data-en="Chapter 06 • On the Concert Stage" data-ta="அத்தியாயம் 06 • மேடை கச்சேரிகள்">Chapter 06 • On the Concert Stage</span>
+            <p class="story-text" 
+               data-en="Step by step, hours of solitary practice blossomed into live Carnatic kutcheris across esteemed sabhas and temple auditoriums. Today, every recital and every class I teach carries the gratitude of that village boy who dared to listen to the call of music." 
+               data-ta="இப்படி கொஞ்சம் கொஞ்சமா பிராக்டிஸ் பண்ணிதான் நான் கச்சேரி வாசிக்க ஆரம்பிச்சேன். கிராமத்துல இருந்து வந்து இன்றைக்கு பாரம்பரிய இசை மேடைகளில் வீணை வாசிப்பதும் மாணவர்களுக்கு கற்பிப்பதும் எனக்கு பெருமிதம்.">
+              Step by step, hours of solitary practice blossomed into live Carnatic kutcheris across esteemed sabhas and temple auditoriums. Today, every recital and every class I teach carries the gratitude of that village boy who dared to listen to the call of music.
+            </p>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         GENTLE LIGHT CONTRAST ZONE: PEARL WHITE & ROYAL BLUE
+         ========================================================= -->
+    <div class="light-contrast-wrapper">
+      <!-- Professional Experience Section -->
+      <section id="experience" class="section container">
+        <div class="section-header scroll-fade-item">
+          <span class="pill-tag" data-en="Pedagogical Legacy & Experience" data-ta="கற்பித்தல் அனுபவம் & வரலாறு">Pedagogical Legacy & Experience</span>
+          <h2 data-en="Academic & Institutional Journey" data-ta="கல்வி மற்றும் நிறுவனப் பயணம்">Academic & Institutional Journey</h2>
+          <p data-en="Shaping the next generation of Carnatic classical musicians through university instruction and dedicated mentorship." data-ta="பல்கலைக்கழகக் கல்வி மற்றும் அர்ப்பணிப்பான வழிகாட்டுதல் மூலம் கர்நாடக இசைக் கலைஞர்களை உருவாக்குதல்.">Shaping the next generation of Carnatic classical musicians through university instruction and dedicated mentorship.</p>
+        </div>
+
+        <div class="resume-grid">
+          <article class="glass-card resume-card scroll-fade-item">
+            <div class="resume-meta">
+              <span class="pill-tag">2019 – 2023</span>
+              <span class="resume-loc" data-en="Chennai, India" data-ta="சென்னை, இந்தியா">Chennai, India</span>
+            </div>
+            <h3 data-en="Temporary Veena Lecturer" data-ta="தற்காலிக வீணை லெக்சரர்">Temporary Veena Lecturer</h3>
+            <h4 class="resume-org" data-en="The Tamil Nadu Dr. J. Jayalalithaa Music and Fine Arts University" data-ta="தமிழ்நாடு டாக்டர் ஜெ. ஜெயலலிதா இசை மற்றும் கவின்கலை பல்கலைக்கழகம்">The Tamil Nadu Dr. J. Jayalalithaa Music and Fine Arts University</h4>
+            <p data-en="Delivered advanced Veena instruction and theory to Master of Arts students. Guided scholars through complex compositions, improvisation techniques, and rigorous evaluations." data-ta="முதுகலை மாணவர்களுக்கு மேம்பட்ட வீணைப் பயிற்சியும் இசைக் கோட்பாடுகளும் வழங்கினேன். சிக்கலான கர்நாடக கீர்த்தனைகள் மற்றும் பரிசோதனை நுட்பங்களைக் கற்றுக்கொடுத்தேன்.">Delivered advanced Veena instruction and theory to Master of Arts students. Guided scholars through complex compositions, improvisation techniques, and rigorous evaluations.</p>
+          </article>
+
+          <article class="glass-card resume-card scroll-fade-item">
+            <div class="resume-meta">
+              <span class="pill-tag">2016 – Present</span>
+              <span class="resume-loc" data-en="Chennai, India" data-ta="சென்னை, இந்தியா">Chennai, India</span>
+            </div>
+            <h3 data-en="Music Faculty — Veena Dept." data-ta="இசைத் துறை பேராசிரியர் — வீணை பிரிவு">Music Faculty — Veena Dept.</h3>
+            <h4 class="resume-org" data-en="Tamil Nadu Government Evening Music College" data-ta="தமிழ்நாடு அரசு மாலை நேர இசைக் கல்லூரி">Tamil Nadu Government Evening Music College</h4>
+            <p data-en="Providing comprehensive practical and theoretical instruction in Veena across diverse proficiency levels, mentoring students for examinations and public performances." data-ta="பல்வேறு திறமை நிலைகளில் உள்ள மாணவர்களுக்கு வீணையில் செய்முறை மற்றும் கோட்பாட்டுப் பயிற்சி அளித்து, தேர்வுகளுக்கும் மேடை நிகழ்ச்சிகளுக்கும் வழிகாட்டுகிறேன்.">Providing comprehensive practical and theoretical instruction in Veena across diverse proficiency levels, mentoring students for examinations and public performances.</p>
+          </article>
+
+          <article class="glass-card resume-card scroll-fade-item">
+            <div class="resume-meta">
+              <span class="pill-tag">2014 – Present</span>
+              <span class="resume-loc" data-en="Chennai, India" data-ta="சென்னை, இந்தியா">Chennai, India</span>
+            </div>
+            <h3 data-en="Freelance Veena Instructor" data-ta="தனிப்பயிற்சி வீணை ஆசிரியர்">Freelance Veena Instructor</h3>
+            <h4 class="resume-org" data-en="Sriniketan Fine Arts" data-ta="ஸ்ரீநிகேதன் ஃபைன் ஆர்ட்ஸ்">Sriniketan Fine Arts</h4>
+            <p data-en="Specialized Veena training for diverse age groups, developing customized teaching methodologies in foundational techniques and traditional repertoire." data-ta="பல்வேறு வயதினருக்கும் பிரத்யேக வீணைப் பயிற்சி அளித்து, பாரம்பரிய நுட்பங்களையும் கீர்த்தனைகளையும் முறையாகக் கற்பித்து வருகிறேன்.">Specialized Veena training for diverse age groups, developing customized teaching methodologies in foundational techniques and traditional repertoire.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Split-Screen Sticky Showcase: Lineage & Qualifications -->
+      <section id="credentials" class="section container">
+        <div class="section-header scroll-fade-item">
+          <span class="pill-tag" data-en="Distinctions & Education" data-ta="தகுதிகள் & விருதுகள்">Distinctions & Education</span>
+          <h2 data-en="Lineage & Qualifications" data-ta="இசை மரபு & கல்வித் தகுதிகள்">Lineage & Qualifications</h2>
+          <p data-en="A chronicle of traditional guru-shishya training, academic honors, and concert milestones." data-ta="பாரம்பரிய குரு-சீட முறை பயிற்சி, கல்வி விருதுகள் மற்றும் கச்சேரி மைல்கற்களின் தொகுப்பு.">A chronicle of traditional guru-shishya training, academic honors, and concert milestones.</p>
+        </div>
+
+        <div class="lineage-split-layout">
+          <!-- Left Sticky Spotlight Panel -->
+          <div class="lineage-sticky-pane">
+            <div class="glass-card spotlight-card" id="spotlightCard">
+              <div class="spotlight-top">
+                <span class="spotlight-index" id="spotIndex">01 / 06</span>
+                <span class="pill-tag" id="spotBadge" data-en="Guru Lineage" data-ta="குரு மரபு">Guru Lineage</span>
+              </div>
+              <h3 class="spotlight-title" id="spotTitle" data-en="Primary Guru Lineage" data-ta="முதன்மை குரு மரபு">Primary Guru Lineage</h3>
+              <p class="spotlight-desc" id="spotDesc" 
+                 data-en="Esteemed rigorous training under <strong>Shri. T. R. Sambasivan</strong>, a renowned exponent of the Veena, inheriting the profound nuances, microtonal intricacies, and rich classical heritage of traditional South Indian music."
+                 data-ta="புகழ்பெற்ற வீணை வித்வான் <strong>ஸ்ரீ. டி. ஆர். சம்பந்தசிவம்</strong> அவர்களிடம் பெற்ற கடுமையான மற்றும் ஆழமான பாரம்பரிய இசைப் பயிற்சி.">
+                Esteemed rigorous training under <strong>Shri. T. R. Sambasivan</strong>, a renowned exponent of the Veena, inheriting the profound nuances, microtonal intricacies, and rich classical heritage of traditional South Indian music.
+              </p>
+              <div class="spotlight-progress-track">
+                <div class="spotlight-progress-fill" id="spotProgress"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Scrollable Milestone Cards -->
+          <div class="lineage-cards-column">
+            <article class="glass-card milestone-card active"
+              data-num="01 / 06"
+              data-badge="Guru Lineage"
+              data-badge-ta="குரு மரபு"
+              data-title="Primary Guru Lineage"
+              data-title-ta="முதன்மை குரு மரபு"
+              data-desc="Esteemed rigorous training under <strong>Shri. T. R. Sambasivan</strong>, a renowned exponent of the Veena, inheriting the profound nuances, microtonal intricacies, and rich classical heritage of traditional South Indian music."
+              data-desc-ta="புகழ்பெற்ற வீணை வித்வான் <strong>ஸ்ரீ. டி. ஆர். சம்பந்தசிவம்</strong> அவர்களிடம் பெற்ற கடுமையான மற்றும் ஆழமான பாரம்பரிய இசைப் பயிற்சி.">
+              <div class="milestone-head">
+                <span class="m-num">01</span>
+                <span class="m-year" data-en="Traditional Bani" data-ta="பாரம்பரிய பாணி">Traditional Bani</span>
+              </div>
+              <h4 data-en="Training under Shri. T. R. Sambasivan" data-ta="ஸ்ரீ. டி. ஆர். சம்பந்தசிவம் அவர்களிடம் பயிற்சி">Training under Shri. T. R. Sambasivan</h4>
+              <p data-en="Esteemed rigorous training under <strong>Shri. T. R. Sambasivan</strong>, a renowned exponent of the Veena, inheriting the profound nuances and classical heritage of traditional South Indian music." data-ta="புகழ்பெற்ற வீணை கலைஞர் ஸ்ரீ. டி. ஆர். சம்பந்தசிவம் அவர்களிடம் பாரம்பரிய தென்னிந்திய இசை நுணுக்கங்களைக் கற்றுத் தேர்ந்தேன்.">Esteemed rigorous training under <strong>Shri. T. R. Sambasivan</strong>, a renowned exponent of the Veena, inheriting the profound nuances and classical heritage of traditional South Indian music.</p>
+            </article>
+
+            <article class="glass-card milestone-card"
+              data-num="02 / 06"
+              data-badge="Postgraduate"
+              data-badge-ta="முதுகலை"
+              data-title="Master of Arts in Veena"
+              data-title-ta="எம்.ஏ. வீணை பட்டம்"
+              data-desc="Awarded First Class in 2019 by <strong>The Tamil Nadu Dr. J. Jayalalithaa Music and Fine Arts University, Chennai</strong>, marking advanced mastery in theoretical scholarship and solo performance."
+              data-desc-ta="2019ஆம் ஆண்டு தமிழ்நாடு டாக்டர் ஜெ. ஜெயலலிதா இசைப் பல்கலைக்கழகத்தில் முதலாம் வகுப்பில் (First Class) எம்.ஏ. பட்டம் பெற்றேன்.">
+              <div class="milestone-head">
+                <span class="m-num">02</span>
+                <span class="m-year" data-en="2019 • First Class" data-ta="2019 • முதலாம் வகுப்பு">2019 • First Class</span>
+              </div>
+              <h4 data-en="Master of Arts in Veena" data-ta="எம்.ஏ. வீணை (Master of Arts)">Master of Arts in Veena</h4>
+              <p data-en="Awarded First Class in 2019 by <strong>The Tamil Nadu Dr. J. Jayalalithaa Music and Fine Arts University, Chennai</strong>, marking advanced mastery in theoretical scholarship and performance." data-ta="2019-ல் தமிழ்நாடு டாக்டர் ஜெ. ஜெயலலிதா இசைப் பல்கலைக்கழகத்தில் இசைத்துறையில் முதுகலை (Master of Arts) பட்டம் பெற்றேன்.">Awarded First Class in 2019 by <strong>The Tamil Nadu Dr. J. Jayalalithaa Music and Fine Arts University, Chennai</strong>, marking advanced mastery in theoretical scholarship and performance.</p>
+            </article>
+
+            <article class="glass-card milestone-card"
+              data-num="03 / 06"
+              data-badge="State Honour"
+              data-badge-ta="மாநில விருது"
+              data-title="Veena Pichumani Award"
+              data-title-ta="வீணை பிச்சுமணி விருது"
+              data-desc="Conferred the prestigious <strong>Veena Pichumani Award in 2024</strong> in recognition of outstanding artistic dedication, mastery, and contribution to classical string artistry."
+              data-desc-ta="செவ்வியல் இசைத் துறைக்கும் வீணை வாசிப்புக்கும் ஆற்றለ பங்களிப்பைப் பாராட்டி 2024இல் வீணை பிச்சுமணி விருது வழங்கப்பட்டது.">
+              <div class="milestone-head">
+                <span class="m-num">03</span>
+                <span class="m-year" data-en="2024 Honour" data-ta="2024 விருது">2024 Honour</span>
+              </div>
+              <h4 data-en="Veena Pichumani Award" data-ta="வீணை பிச்சுமணி விருது">Veena Pichumani Award</h4>
+              <p data-en="Conferred the prestigious <strong>Veena Pichumani Award in 2024</strong> in recognition of outstanding artistic dedication, mastery, and contribution to classical string artistry." data-ta="இசை சேவைக்காகவும் வீணை கலைத் திறனுக்காகவும் 2024ஆம் ஆண்டு வீணை பிச்சுமணி விருது வழங்கி கவுரவிக்கப்பட்டேன்.">Conferred the prestigious <strong>Veena Pichumani Award in 2024</strong> in recognition of outstanding artistic dedication, mastery, and contribution to classical string artistry.</p>
+            </article>
+
+            <article class="glass-card milestone-card"
+              data-num="04 / 06"
+              data-badge="Undergraduate"
+              data-badge-ta="இளங்கலை"
+              data-title="B.A. in Music (Veena)"
+              data-title-ta="பி.ஏ. இசை (வீணை)"
+              data-desc="Graduated in 2017 from <strong>The Tamil Nadu Dr. J. Jayalalithaa Music and Fine Arts University</strong>, establishing a deep foundational bedrock in Carnatic music history and raga lakshana."
+              data-desc-ta="2017ஆம் ஆண்டு தமிழ்நாடு டாக்டர் ஜெ. ஜெயலலிதா இசைப் பல்கலைக்கழகத்தில் பி.ஏ. இசை (வீணை) பட்டம் பெற்றேன்.">
+              <div class="milestone-head">
+                <span class="m-num">04</span>
+                <span class="m-year">2017</span>
+              </div>
+              <h4 data-en="B.A. in Music (Veena)" data-ta="பி.ஏ. இசை (வீணை)">B.A. in Music (Veena)</h4>
+              <p data-en="Graduated in 2017 from <strong>The Tamil Nadu Dr. J. Jayalalithaa Music and Fine Arts University</strong>, establishing a deep foundational bedrock in Carnatic music history and raga lakshana." data-ta="2017இல் இசைத்துறையில் இளங்கலை (B.A.) பட்டம் பெற்று, ராக லக்ஷணம் மற்றும் இசை வரலாற்றில் ஆழமான அடித்தளம் அமைத்தேன்.">Graduated in 2017 from <strong>The Tamil Nadu Dr. J. Jayalalithaa Music and Fine Arts University</strong>, establishing a deep foundational bedrock in Carnatic music history and raga lakshana.</p>
+            </article>
+
+            <article class="glass-card milestone-card"
+              data-num="05 / 06"
+              data-badge="Government Title"
+              data-badge-ta="அரசு பட்டம்"
+              data-title="Sangeetha Vidwan Title"
+              data-title-ta="சங்கீத வித்வான் பட்டம்"
+              data-desc="Awarded the <strong>Sangeetha Vidwan (Isai Kalai mani) Title</strong> in 2014 by the Department of Government Examinations, Government of Tamil Nadu, following a 3-year Diploma in Music."
+              data-desc-ta="2014இல் தமிழ்நாடு அரசுத் தேர்வுத்துறை மூலம் மூன்று வருட இசை டிப்ளமோ முடித்து 'சங்கீத வித்வான்' (இசைக் கலைமணி) பட்டம் பெற்றேன்.">
+              <div class="milestone-head">
+                <span class="m-num">05</span>
+                <span class="m-year">2014</span>
+              </div>
+              <h4 data-en="Sangeetha Vidwan (Isai Kalai mani)" data-ta="சங்கீத வித்வான் (இசைக் கலைமணி)">Sangeetha Vidwan (Isai Kalai mani)</h4>
+              <p data-en="Awarded the <strong>Sangeetha Vidwan Title</strong> in 2014 by the Department of Government Examinations, Government of Tamil Nadu, following a 3-year Diploma in Music." data-ta="2014ஆம் ஆண்டு தமிழ்நாடு அரசுத் தேர்வுத்துறையின் மூலம் சங்கீத வித்வான் பட்டம் எனக்கு வழங்கப்பட்டது.">Awarded the <strong>Sangeetha Vidwan Title</strong> in 2014 by the Department of Government Examinations, Government of Tamil Nadu, following a 3-year Diploma in Music.</p>
+            </article>
+
+            <article class="glass-card milestone-card"
+              data-num="06 / 06"
+              data-badge="Concert Stage"
+              data-badge-ta="கச்சேரி மேடைகள்"
+              data-title="Prestigious Venues & Honors"
+              data-title-ta="புகழ்பெற்ற சபைகள் & சிறப்புகள்"
+              data-desc="Performed at esteemed cultural centers including <strong>Naradhagana Sabha (Veena Festival, Chennai)</strong>, <strong>Mahathi Auditorium (Tirupati)</strong>, and <strong>TTD (Tirumala)</strong>. Frequently honoured as Chief Guest at music school functions."
+              data-desc-ta="நாரத கான சபா (சென்னை), திருப்பதி மஹதி அரங்கம் மற்றும் திருப்பதி திருமலை தேவஸ்தானம் போன்ற பல முக்கிய இடங்களில் வீணை வாசித்துள்ளேன்.">
+              <div class="milestone-head">
+                <span class="m-num">06</span>
+                <span class="m-year" data-en="Sabhas & Festivals" data-ta="சபைகள் & திருவிழாக்கள்">Sabhas & Festivals</span>
+              </div>
+              <h4 data-en="Prestigious Venues & Chief Guest" data-ta="புகழ்பெற்ற அரங்கங்கள் & சிறப்பு விருந்தினர்">Prestigious Venues & Chief Guest</h4>
+              <p data-en="Performed at <strong>Naradhagana Sabha (Veena Festival, Chennai)</strong>, <strong>Mahathi Auditorium (Tirupati)</strong>, and <strong>TTD (Tirumala)</strong>, and honoured as Chief Guest at music school functions." data-ta="சென்னை நாரத கான சபா, திருப்பதி மற்றும் திருமலை உள்ளிட்ட பல புகழ்பெற்ற இடங்களில் கச்சேரிகள் செய்துள்ளேன்.">Performed at <strong>Naradhagana Sabha (Veena Festival, Chennai)</strong>, <strong>Mahathi Auditorium (Tirupati)</strong>, and <strong>TTD (Tirumala)</strong>, and honoured as Chief Guest at music school functions.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Floating WhatsApp Quick-Contact Widget -->
+  <a href="https://wa.me/919655438558?text=Namaskaram%20Mukesh,%20I%20visited%20your%20veena%20portfolio%20and%20would%20like%20to%20connect." 
+     class="whatsapp-float" 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 32 32" class="whatsapp-icon" fill="currentColor">
+      <path d="M16.02 3.25c-7.04 0-12.77 5.73-12.77 12.77 0 2.25.59 4.41 1.71 6.32L3.5 28.7l6.56-1.72c1.84 1 3.96 1.53 6.13 1.53 7.04 0 12.77-5.73 12.77-12.77S23.06 3.25 16.02 3.25zm0 23.36c-1.9 0-3.76-.51-5.38-1.48l-.39-.23-4.14 1.09 1.11-4.03-.25-.41c-1.05-1.68-1.6-3.63-1.6-5.63 0-5.91 4.81-10.72 10.74-10.72 5.92 0 10.73 4.81 10.73 10.72s-4.81 10.72-10.72 10.72zm5.88-8.04c-.32-.16-1.89-.93-2.19-1.04-.29-.11-.5-.16-.71.16-.21.32-.82 1.04-1.01 1.25-.19.21-.38.24-.7.08-.32-.16-1.35-.5-2.58-1.59-.95-.85-1.59-1.9-1.78-2.22-.19-.32-.02-.49.14-.65.14-.14.32-.37.48-.56.16-.19.21-.32.32-.53.11-.21.06-.4-.03-.56-.08-.16-.71-1.72-.98-2.35-.26-.62-.53-.53-.71-.54l-.61-.01c-.21 0-.56.08-.85.39-.29.32-1.12 1.09-1.12 2.66 0 1.57 1.14 3.09 1.3 3.3.16.21 2.24 3.42 5.43 4.8 3.19 1.38 3.19.92 3.76.86.57-.06 1.89-.77 2.16-1.52.27-.75.27-1.39.19-1.52-.08-.13-.29-.21-.61-.37z"/>
+    </svg>
+    <span class="whatsapp-tooltip" data-en="Chat with Mukesh" data-ta="முகேஷிடம் பேசுக">Chat with Mukesh</span>
+  </a>
+
+  <footer class="glass-footer">
+    <div class="container footer-center-content">
+      <p class="footer-name">Mukesh</p>
+      <a href="https://www.instagram.com/veenai_mukesh?utm_source=ig_web_button_share_sheet&xtok=ZDNlZDc0MzIxNw==" 
+         class="footer-insta-icon" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
