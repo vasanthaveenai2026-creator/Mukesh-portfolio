@@ -32,8 +32,13 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
+
+/* Lenis smooth-scroll helpers */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
 
 body {
   background: radial-gradient(circle at 15% 15%, var(--bg-cerulean) 0%, var(--bg-deep) 45%, var(--bg-abyss) 100%);
@@ -125,6 +130,7 @@ body.light-theme .milestone-card p strong {
   filter: blur(95px);
   opacity: 0.48;
   animation: floatOrb 18s ease-in-out infinite alternate;
+  translate: 0 var(--py, 0px);
   transition: background 1.2s ease-in-out;
 }
 
@@ -165,6 +171,7 @@ body.light-theme .milestone-card p strong {
   width: 760px;
   height: 760px;
   animation: slowSpin 140s linear infinite;
+  translate: 0 var(--py, 0px);
 }
 
 .mandala-top-right {
@@ -309,7 +316,7 @@ h3 {
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 18px 45px rgba(0, 180, 216, 0.24));
   user-select: none;
-  transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+  will-change: transform, opacity;
 }
 
 .hero-sub-bar {
@@ -390,11 +397,7 @@ h3 {
   object-fit: cover;
   border-radius: 16px;
   display: block;
-  opacity: var(--img-opacity, 0.08);
-  transform: scale(var(--img-scale, 1.08));
-  filter: blur(var(--img-blur, 6px));
-  transition: opacity 0.25s ease-out, transform 0.35s ease-out, filter 0.35s ease-out;
-  will-change: opacity, transform, filter;
+  will-change: transform, clip-path;
 }
 
 .gallery-card-item.frame-portrait .glass-img-shell img {
@@ -600,11 +603,17 @@ h3 {
 
 /* Scroll-Linked Container Fade & Elevation */
 .scroll-fade-item {
-  opacity: var(--item-opacity, 0);
-  transform: translateY(var(--item-y, 48px));
-  transition: opacity 0.25s ease-out, transform 0.35s ease-out;
   will-change: opacity, transform;
 }
+
+/* keep hover colour transitions on cards, but let GSAP own transform/opacity */
+.scroll-fade-item.glass-card {
+  transition: border-color 0.35s ease, background 0.5s ease, box-shadow 0.35s ease;
+}
+
+/* Language button: GSAP hides it after scrolling down */
+.lang-toggle-wrap { will-change: transform, opacity; }
+.lang-toggle-wrap.is-hidden { pointer-events: none; }
 
 /* =========================================================
    FLOATING WHATSAPP WIDGET
@@ -724,8 +733,11 @@ h3 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  margin: 0.25rem auto 0;
+  opacity: 1;
+  visibility: visible;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--glass-border-bright);
@@ -796,4 +808,9 @@ h3 {
     top: 15px;
     right: 15px;
   }
+}
+.footer-insta-icon svg {
+  width: 28px;
+  height: 28px;
+  display: block;
 }

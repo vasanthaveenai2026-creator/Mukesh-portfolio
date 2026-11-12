@@ -1,4 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const hasGSAP = typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined";
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const animate = hasGSAP && !prefersReduced;
+
+  if (hasGSAP) gsap.registerPlugin(ScrollTrigger);
+
   // 1. Procedurally Generate Intricate Mandala Petals
   const outerPetals = document.getElementById("petals-outer");
   const innerPetals = document.getElementById("petals-inner");
@@ -23,75 +29,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 2. Hero Sweeping SVG Thread Draw-In on Load
-  const threadPath = document.getElementById("heroThreadPath");
-  if (threadPath) {
-    const length = threadPath.getTotalLength();
-    threadPath.style.strokeDasharray = length;
-    threadPath.style.strokeDashoffset = length;
-    threadPath.getBoundingClientRect();
-    threadPath.style.transition = "stroke-dashoffset 1.8s cubic-bezier(0.22, 1, 0.36, 1)";
-    threadPath.style.strokeDashoffset = "0";
+  // 2. Smooth Scrolling (Lenis) synced with GSAP ScrollTrigger
+  let lenis = null;
+  if (animate && typeof Lenis !== "undefined") {
+    lenis = new Lenis({
+      duration: 1.25,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
   }
 
-  // 3. Gradual Scroll-Progress Reveal & Gentle Theme Transition
-  const scrollItems = document.querySelectorAll(".scroll-fade-item");
-  const monumentalName = document.getElementById("monumentalName");
+  // 3. Theme switch for the light-contrast zone (kept from original, now via ScrollTrigger)
   const lightZone = document.querySelector(".light-contrast-wrapper");
-
-  function updateScrollAnimations() {
-    const windowHeight = window.innerHeight;
-    const scrollY = window.scrollY;
-
-    if (monumentalName) {
-      const heroProgress = Math.min(scrollY / (windowHeight * 0.85), 1);
-      monumentalName.style.transform = `translateY(${scrollY * 0.18}px) scale(${1 - heroProgress * 0.06})`;
-      monumentalName.style.opacity = `${1 - heroProgress * 0.75}`;
-    }
-
-    if (lightZone) {
-      const zoneRect = lightZone.getBoundingClientRect();
-      const triggerTop = windowHeight * 0.8;
-      const triggerBottom = windowHeight * 0.2;
-      if (zoneRect.top <= triggerTop && zoneRect.bottom >= triggerBottom) {
-        document.body.classList.add("light-theme");
-      } else {
-        document.body.classList.remove("light-theme");
-      }
-    }
-
-    scrollItems.forEach((item) => {
-      const rect = item.getBoundingClientRect();
-      const startTrigger = windowHeight * 0.96;
-      const endTrigger = windowHeight * 0.48;
-      const rawProgress = (startTrigger - rect.top) / (startTrigger - endTrigger);
-      const progress = Math.max(0, Math.min(1, rawProgress));
-      const eased = 1 - Math.pow(1 - progress, 3);
-
-      item.style.setProperty("--item-opacity", eased.toFixed(3));
-      item.style.setProperty("--item-y", `${((1 - eased) * 55).toFixed(1)}px`);
-
-      const img = item.querySelector("img");
-      if (img) {
-        img.style.setProperty("--img-opacity", (0.05 + eased * 0.95).toFixed(3));
-        img.style.setProperty("--img-scale", (1.09 - eased * 0.09).toFixed(4));
-        img.style.setProperty("--img-blur", `${((1 - eased) * 7).toFixed(2)}px`);
-      }
+  if (lightZone && hasGSAP) {
+    ScrollTrigger.create({
+      trigger: lightZone,
+      start: "top 80%",
+      end: "bottom 20%",
+      onToggle: (self) => document.body.classList.toggle("light-theme", self.isActive),
     });
   }
-
-  let ticking = false;
-  window.addEventListener("scroll", () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        updateScrollAnimations();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
-  window.addEventListener("resize", updateScrollAnimations);
-  updateScrollAnimations();
 
   // 4. Split-Screen Sticky Spotlight for Lineage & Qualifications
   const milestoneCards = document.querySelectorAll(".milestone-card");
@@ -101,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const spotDesc = document.getElementById("spotDesc");
   const spotProgress = document.getElementById("spotProgress");
   let currentLang = "en";
+  let activeCardEl = null;
 
   function getMilestoneText(card, field) {
     if (currentLang === "ta") {
@@ -112,6 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function activateMilestone(card, index) {
+    const changed = activeCardEl !== card;
+    activeCardEl = card;
+
     milestoneCards.forEach((c) => c.classList.remove("active"));
     card.classList.add("active");
 
@@ -119,9 +83,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (spotBadge) spotBadge.textContent = getMilestoneText(card, "badge");
     if (spotTitle) spotTitle.textContent = getMilestoneText(card, "title");
     if (spotDesc) spotDesc.innerHTML = getMilestoneText(card, "desc");
+
+    const pct = ((index + 1) / milestoneCards.length) * 100;
     if (spotProgress) {
-      const pct = ((index + 1) / milestoneCards.length) * 100;
-      spotProgress.style.width = `${pct}%`;
+      if (animate) gsap.to(spotProgress, { width: `${pct}%`, duration: 0.8, ease: "power3.out", overwrite: true });
+      else spotProgress.style.width = `${pct}%`;
+    }
+
+    // Smooth text swap in the spotlight panel
+    if (animate && changed) {
+      gsap.fromTo(
+        [spotIndex, spotBadge, spotTitle, spotDesc].filter(Boolean),
+        { y: 18, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out", stagger: 0.07, overwrite: true }
+      );
     }
   }
 
@@ -138,11 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     },
-    {
-      root: null,
-      rootMargin: "-35% 0px -45% 0px",
-      threshold: 0.1,
-    }
+    { root: null, rootMargin: "-35% 0px -45% 0px", threshold: 0.1 }
   );
 
   milestoneCards.forEach((card) => milestoneObserver.observe(card));
@@ -154,18 +125,15 @@ document.addEventListener("DOMContentLoaded", () => {
   if (langToggleBtn) {
     langToggleBtn.addEventListener("click", () => {
       currentLang = currentLang === "en" ? "ta" : "en";
-      
-      // Update toggle button text
+
       if (langTextSpan) {
         langTextSpan.textContent = langTextSpan.getAttribute(`data-${currentLang}`);
       }
 
-      // Translate all elements with data-en and data-ta attributes
       document.querySelectorAll("[data-en][data-ta]").forEach((el) => {
         el.innerHTML = el.getAttribute(`data-${currentLang}`);
       });
 
-      // Refresh active milestone spotlight details in current language
       const activeCard = document.querySelector(".milestone-card.active");
       if (activeCard) {
         const activeIdx = Array.from(milestoneCards).indexOf(activeCard);
@@ -173,4 +141,133 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  if (!animate) return; // reduced motion or GSAP failed to load: page stays fully visible
+
+  // =========================================================
+  // GSAP ANIMATIONS
+  // =========================================================
+
+  // 6. Language button: disappears after scrolling down, returns at the top
+  const langWrap = document.querySelector(".lang-toggle-wrap");
+  if (langWrap) {
+    gsap.from(langWrap, { y: -30, autoAlpha: 0, duration: 0.9, delay: 0.9, ease: "power3.out" });
+
+    ScrollTrigger.create({
+      start: 80,
+      end: "max",
+      onEnter: () => {
+        langWrap.classList.add("is-hidden");
+        gsap.to(langWrap, { y: -30, autoAlpha: 0, duration: 0.45, ease: "power2.in", overwrite: true });
+      },
+      onLeaveBack: () => {
+        langWrap.classList.remove("is-hidden");
+        gsap.to(langWrap, { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out", overwrite: true });
+      },
+    });
+  }
+
+  // 7. Hero intro timeline
+  const heroName = document.getElementById("monumentalName");
+  const heroSub = document.querySelector(".hero-sub-bar");
+  const threadPath = document.getElementById("heroThreadPath");
+
+  const intro = gsap.timeline({ defaults: { ease: "power4.out" } });
+  if (heroName) {
+    intro.from(heroName, { yPercent: 28, scale: 1.1, autoAlpha: 0, duration: 1.6 }, 0.1);
+  }
+  if (heroSub) {
+    intro.from(heroSub, { y: 30, autoAlpha: 0, duration: 1.1 }, 0.9);
+  }
+  if (threadPath) {
+    const length = threadPath.getTotalLength();
+    gsap.set(threadPath, { strokeDasharray: length, strokeDashoffset: length });
+    intro.to(threadPath, { strokeDashoffset: 0, duration: 2, ease: "expo.out" }, 0.3);
+  }
+  gsap.from(".whatsapp-float", {
+    scale: 0, autoAlpha: 0, duration: 0.8, delay: 1.8, ease: "back.out(2)", clearProps: "transform,opacity,visibility",
+  });
+
+  // 8. Hero scroll: title drifts, shrinks and fades as you leave
+  const heroSection = document.querySelector(".monumental-hero");
+  if (heroSection) {
+    gsap.to(".hero-title-wrap", {
+      y: 150, scale: 0.94, autoAlpha: 0.15, ease: "none",
+      scrollTrigger: { trigger: heroSection, start: "top top", end: "bottom top", scrub: true },
+    });
+    gsap.to(".hero-thread-svg", {
+      autoAlpha: 0, ease: "none",
+      scrollTrigger: { trigger: heroSection, start: "top top", end: "70% top", scrub: true },
+    });
+  }
+
+  // 9. Ambient background parallax (orbs + mandala drift at different speeds)
+  const docScroll = { trigger: document.documentElement, start: "top top", end: "bottom bottom", scrub: 1.2 };
+  gsap.to(".orb-1", { "--py": "260px", ease: "none", scrollTrigger: docScroll });
+  gsap.to(".orb-2", { "--py": "-320px", ease: "none", scrollTrigger: docScroll });
+  gsap.to(".orb-3", { "--py": "180px", ease: "none", scrollTrigger: docScroll });
+  gsap.to(".mandala-bg", { "--py": "320px", ease: "none", scrollTrigger: docScroll });
+
+  // 10. Section headers: pill, title, text rise one after another
+  gsap.utils.toArray(".gallery-intro, .section-header").forEach((header) => {
+    gsap.from(header.children, {
+      y: 45, autoAlpha: 0, duration: 1.1, ease: "power3.out", stagger: 0.14,
+      scrollTrigger: { trigger: header, start: "top 85%", toggleActions: "play none none reverse" },
+    });
+  });
+
+  // 11. Gallery cards: rise in, image reveals with a clip-path + settling zoom
+  gsap.utils.toArray(".gallery-card-item").forEach((card) => {
+    gsap.from(card, {
+      y: 70, autoAlpha: 0, duration: 1.2, ease: "power3.out",
+      scrollTrigger: { trigger: card, start: "top 90%", toggleActions: "play none none reverse" },
+    });
+
+    const img = card.querySelector("img");
+    if (img) {
+      gsap.fromTo(
+        img,
+        { scale: 1.25, clipPath: "inset(14% 14% 14% 14% round 16px)" },
+        {
+          scale: 1, clipPath: "inset(0% 0% 0% 0% round 16px)", ease: "none",
+          scrollTrigger: { trigger: card, start: "top 92%", end: "top 40%", scrub: 0.8 },
+        }
+      );
+    }
+
+    const caption = card.querySelector(".story-caption-box, figcaption");
+    if (caption) {
+      gsap.from(caption.children.length ? caption.children : caption, {
+        y: 28, autoAlpha: 0, duration: 0.9, ease: "power3.out", stagger: 0.12,
+        scrollTrigger: { trigger: card, start: "top 70%", toggleActions: "play none none reverse" },
+      });
+    }
+  });
+
+  // 12. Resume cards: staggered batch reveal
+  gsap.set(".resume-card", { y: 60, autoAlpha: 0 });
+  ScrollTrigger.batch(".resume-card", {
+    start: "top 88%",
+    onEnter: (batch) => gsap.to(batch, { y: 0, autoAlpha: 1, duration: 1, ease: "power3.out", stagger: 0.16, overwrite: true }),
+    onLeaveBack: (batch) => gsap.to(batch, { y: 60, autoAlpha: 0, duration: 0.5, ease: "power2.in", overwrite: true }),
+  });
+
+  // 13. Credentials spotlight panel + footer
+  const spotlight = document.querySelector(".lineage-sticky-pane");
+  if (spotlight) {
+    gsap.from(spotlight, {
+      x: -50, autoAlpha: 0, duration: 1.1, ease: "power3.out",
+      scrollTrigger: { trigger: ".lineage-split-layout", start: "top 80%", toggleActions: "play none none reverse" },
+    });
+  }
+  // Footer name only; the Instagram icon stays always visible
+  gsap.from(".footer-name", {
+    y: 30, autoAlpha: 0, duration: 0.9, ease: "power3.out",
+    scrollTrigger: { trigger: ".glass-footer", start: "top 100%", toggleActions: "play none none none" },
+  });
+
+  // 14. Recalculate trigger positions once fonts / images have settled
+  const refresh = () => ScrollTrigger.refresh();
+  window.addEventListener("load", refresh);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh);
 });
