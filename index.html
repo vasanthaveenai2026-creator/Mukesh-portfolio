@@ -350,6 +350,29 @@
         </div>
       </section>
     </div>
+
+    <!-- Audience Reviews (live from Firestore) -->
+    <section id="reviews" class="section container">
+      <div class="section-header scroll-fade-item">
+        <span class="pill-tag" data-en="Audience Voices" data-ta="ரசிகர்களின் குரல்">Audience Voices</span>
+        <h2 data-en="What Audiences Say" data-ta="ரசிகர்கள் கூறுவது">What Audiences Say</h2>
+        <p data-en="Kind words from those who attended the concerts." data-ta="கச்சேரிகளில் கலந்துகொண்ட ரசிகர்களின் அன்பான வார்த்தைகள்.">Kind words from those who attended the concerts.</p>
+      </div>
+
+      <div class="reviews-summary" id="reviewsSummary" hidden>
+        <span class="reviews-avg" id="reviewsAvg">0.0</span>
+        <span class="reviews-avg-stars" id="reviewsAvgStars" aria-hidden="true"></span>
+        <span class="reviews-count" id="reviewsCount"></span>
+      </div>
+
+      <div class="reviews-grid" id="reviewsGrid" aria-live="polite">
+        <p class="reviews-status">Loading reviews…</p>
+      </div>
+
+      <div class="reviews-cta">
+        <a class="reviews-btn" href="pages/review.html" data-en="Write a Review" data-ta="மதிப்புரை எழுதுக">Write a Review</a>
+      </div>
+    </section>
   </main>
 
   <!-- Floating WhatsApp Quick-Contact Widget -->
@@ -384,5 +407,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
   <script src="script.js"></script>
+  <!-- Loads approved reviews from Firestore -->
+  <script type="module" src="./js/reviews-feed.js"></script>
 </body>
 </html>

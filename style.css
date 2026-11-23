@@ -847,3 +847,80 @@ h3 {
   /* fewer layers promoted to the GPU */
   .scroll-fade-item, .lang-toggle-wrap, .gallery-card-item img { will-change: auto; }
 }
+/* =========================================================
+   AUDIENCE REVIEWS SECTION
+   ========================================================= */
+.reviews-summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin: -1.5rem auto 2.5rem;
+}
+.reviews-summary[hidden] { display: none; }
+.reviews-avg {
+  font-family: var(--font-serif);
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--accent-ice);
+  line-height: 1;
+}
+.reviews-avg-stars { font-size: 1.4rem; letter-spacing: 3px; }
+.reviews-count { color: var(--text-muted); font-size: 0.95rem; }
+
+.rv-star-on  { color: #fbbf24; }
+.rv-star-off { color: rgba(165, 201, 225, 0.28); }
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.5rem;
+}
+.reviews-status {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--text-muted);
+  padding: 2rem 0;
+}
+
+.review-card {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.review-card .rv-stars { font-size: 1.15rem; letter-spacing: 2px; }
+.review-card .rv-text {
+  color: var(--text-main);
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+.review-card .rv-meta {
+  margin-top: auto;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.review-card .rv-name { font-weight: 600; color: var(--accent-ice); }
+.review-card .rv-sub  { font-size: 0.82rem; color: var(--text-muted); }
+
+.reviews-cta { text-align: center; margin-top: 2.75rem; }
+.reviews-btn {
+  display: inline-block;
+  padding: 0.9rem 2.1rem;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-sapphire));
+  box-shadow: 0 10px 28px rgba(0, 119, 182, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.reviews-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(0, 119, 182, 0.55); }
+.reviews-btn:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 3px; }

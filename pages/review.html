@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Write a Review | Mukesh</title>
+  <meta name="description" content="Attended a Mukesh concert? Rate the show and share your experience." />
+  <meta name="theme-color" content="#040a1c" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/review.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="brand" href="../index.html">Mukesh</a>
+    <nav aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="review.html" aria-current="page">Review</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="shell" aria-labelledby="page-title">
+
+      <!-- LEFT: intro panel -->
+      <aside class="intro">
+        <div class="intro-inner">
+          <p class="eyebrow">♪ Audience Voices</p>
+          <h1 id="page-title">How was the show?</h1>
+          <p class="lead">
+            Thank you for being part of the concert. Rate your experience and leave a few words.
+            Your feedback means the world.
+          </p>
+
+          <ul class="perks">
+            <li><span aria-hidden="true">⏱</span> Takes less than a minute</li>
+            <li><span aria-hidden="true">🔒</span> Your email is never shown publicly</li>
+            <li><span aria-hidden="true">🎶</span> Helps shape future shows</li>
+          </ul>
+        </div>
+        <span class="orb orb-1" aria-hidden="true"></span>
+        <span class="orb orb-2" aria-hidden="true"></span>
+      </aside>
+
+      <!-- RIGHT: form -->
+      <div class="form-panel">
+        <h2 class="form-title">Write a review</h2>
+
+        <form id="reviewForm" novalidate>
+
+          <!-- Star rating -->
+          <fieldset class="field rating-field">
+            <legend>Your rating <span class="req" aria-hidden="true">*</span></legend>
+
+            <div class="star-input" id="starInput">
+              <input type="radio" id="star5" name="rating" value="5" required />
+              <label for="star5" title="Excellent">★<span class="sr-only">5 stars</span></label>
+
+              <input type="radio" id="star4" name="rating" value="4" />
+              <label for="star4" title="Very good">★<span class="sr-only">4 stars</span></label>
+
+              <input type="radio" id="star3" name="rating" value="3" />
+              <label for="star3" title="Good">★<span class="sr-only">3 stars</span></label>
+
+              <input type="radio" id="star2" name="rating" value="2" />
+              <label for="star2" title="Fair">★<span class="sr-only">2 stars</span></label>
+
+              <input type="radio" id="star1" name="rating" value="1" />
+              <label for="star1" title="Poor">★<span class="sr-only">1 star</span></label>
+            </div>
+
+            <span class="rating-text" id="ratingText" aria-live="polite">Select a rating</span>
+            <p class="error" id="ratingError" role="alert"></p>
+          </fieldset>
+
+          <div class="row">
+            <div class="field">
+              <label for="name">Your name <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="name" name="name" maxlength="50" autocomplete="name" placeholder="e.g. Priya S." required />
+              <p class="error" id="nameError" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="concert">Concert attended <span class="req" aria-hidden="true">*</span></label>
+              <select id="concert" name="concert" required>
+                <option value="" disabled selected>Select a concert</option>
+              </select>
+              <p class="error" id="concertError" role="alert"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">Email <span class="optional">(optional, never shown publicly)</span></label>
+            <input type="email" id="email" name="email" maxlength="100" autocomplete="email" placeholder="you@example.com" />
+            <p class="error" id="emailError" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="text">Your review <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="text" name="text" rows="5" placeholder="What did you love most? Favourite song, the atmosphere, the energy…" required></textarea>
+            <div class="counter"><span id="charCount">0</span> / <span id="charMax">600</span></div>
+            <p class="error" id="textError" role="alert"></p>
+          </div>
+
+          <!-- Honeypot (bots fill this, humans never see it) -->
+          <div class="hp" aria-hidden="true">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <button type="submit" class="btn primary" id="submitBtn">Submit review</button>
+        </form>
+
+        <!-- Thank-you state -->
+        <div class="success" id="success" hidden>
+          <div class="success-icon" aria-hidden="true">✓</div>
+          <h2 id="successTitle" tabindex="-1">Thank you!</h2>
+          <div class="success-stars" id="successStars" aria-hidden="true"></div>
+          <p>Your review has been submitted. It was a pleasure having you at the show 🎶</p>
+          <button type="button" class="btn outline" id="anotherBtn">Write another review</button>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Mukesh. All rights reserved.</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="../js/review.js"></script>
+</body>
+</html>
